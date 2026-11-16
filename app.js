@@ -134,7 +134,7 @@ function renderAgenda(branchRows = byBranch()) {
 
 function caseForm(row) {
   if (row.state===4) return '<div class="action-card"><h3>Seguimiento cerrado</h3></div>';
-  const dateLabel=['Fecha para agendar la visita','Fecha de la visita','Fecha del próximo paso','Fecha del próximo contacto'][row.state];
+  const dateLabel=['Fecha para agendar la visita','Fecha de la visita','Fecha del próximo contacto','Fecha del próximo contacto'][row.state];
   return `<form id="case-form" class="action-card">
     <h3>${actionTitles[row.state]}</h3>
     <p class="helper">${['Elegí fecha y hora para la visita técnica.','Registrá la visita cuando se haya realizado.','Dejá anotado el importe y cuándo volver a contactar al cliente.','Actualizá la fecha de seguimiento o cerrá el proyecto.'][row.state]}</p>
@@ -191,7 +191,7 @@ $('case-body').addEventListener('submit',event=>{
   if (data.has('amount')) row.amount=amount;
   if (advance) {
     const labels=['Visita técnica agendada','Visita técnica realizada','Envío de presupuesto registrado','Proyecto cerrado'];
-    row.history.push({text:labels[row.state],date:dateKey()});
+    row.history.push({text:labels[row.state],date:row.state===1?row.date:dateKey()});
     row.state+=1;
     if (row.state===2) row.date=offset(1);
     if (row.state===4) row.date=row.time='';
