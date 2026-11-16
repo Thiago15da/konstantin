@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es-PY">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f2f7f7">
+<meta name="description" content="Muestra interactiva para Konstantin Piscinas. Consultas, visitas técnicas y presupuestos por sucursal.">
+<meta property="og:title" content="Konstantin Piscinas | Seguimiento comercial">
+<meta property="og:description" content="Recorré un proyecto de piscina desde la visita técnica hasta el seguimiento del presupuesto.">
+<title>Konstantin Piscinas | Seguimiento comercial</title>
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Ir al contenido</a>
+<header class="mast">
+  <a class="brand" href="#proyectos"><img src="marca.webp" alt="Konstantin S.A. Piscinas" width="320" height="96"></a>
+  <nav aria-label="Navegación"><a href="#proyectos" data-view="proyectos">Proyectos</a><a href="#agenda" data-view="agenda">Agenda</a></nav>
+  <span class="badge-demo"><i></i> Muestra de NovaTec</span>
+</header>
+<main id="main">
+  <header class="main-head">
+    <div><p class="eyebrow">Presupuestos y visitas</p><h1 id="view-title">Seguimiento comercial</h1></div>
+    <div class="head-tools"><label class="filter">Sucursal<select id="branch-filter"></select></label><button class="button primary" type="button" data-action="new">+ Nueva consulta</button></div>
+  </header>
+  <section id="view-proyectos" aria-label="Proyectos">
+    <section class="hero">
+      <div class="hero-copy"><h2>De la visita<br>al presupuesto.</h2><p>Quién atiende cada proyecto, cuándo es la visita y cuándo toca volver a contactar al cliente.</p><button class="button mint" type="button" data-action="example">Abrir proyecto de ejemplo <span class="arrow" aria-hidden="true"></span></button></div>
+      <figure><img src="piscina.webp" width="850" height="420" alt="Piscina de exposición de Konstantin en San Bernardino"><figcaption>Exposición Konstantin · San Bernardino</figcaption></figure>
+    </section>
+    <div class="stats" id="stats" aria-label="Indicadores"></div>
+    <section class="surface">
+      <div class="section-head"><div><h2>Proyectos por sucursal</h2><p id="count" aria-live="polite"></p></div><div class="filters"><input type="search" id="search" aria-label="Buscar proyectos" placeholder="Buscar cliente o código"><select id="stage-filter" aria-label="Filtrar por etapa"><option value="">Todas las etapas</option><option value="0">Consulta</option><option value="1">Visita agendada</option><option value="2">Visita realizada</option><option value="3">Presupuesto enviado</option><option value="4">Cerrado</option></select></div></div>
+      <div id="projects"></div>
+    </section>
+  </section>
+  <section id="view-agenda" class="surface" aria-label="Agenda" hidden>
+    <div class="section-head"><div><h2>Próximas acciones</h2><p>Visitas y contactos ordenados por fecha.</p></div><select id="agenda-filter" aria-label="Filtrar agenda"><option value="">Todas las acciones</option><option value="late">Vencidas</option><option value="visit">Visitas técnicas</option><option value="contact">Contactos comerciales</option></select></div>
+    <div id="agenda"></div>
+  </section>
+  <footer><p>Demo de <strong>NovaTec Engineering</strong> para Konstantin S.A. · Datos ficticios y guardado en este navegador.</p><button class="link" type="button" data-action="reset">Reiniciar demo</button></footer>
+</main>
+<dialog id="case-dialog" aria-labelledby="case-name">
+  <header class="dialog-head"><div><p class="eyebrow" id="case-code"></p><h2 id="case-name"></h2><p id="case-detail"></p></div><button type="button" class="close" aria-label="Cerrar proyecto" data-action="close-case">×</button></header>
+  <div class="dialog-body" id="case-body"></div>
+</dialog>
+<dialog id="new-dialog" aria-labelledby="new-title">
+  <header class="dialog-head"><div><h2 id="new-title">Nueva consulta</h2><p>Usá datos de prueba.</p></div><button type="button" class="close" aria-label="Cerrar nueva consulta" data-action="close-new">×</button></header>
+  <form id="new-form" class="dialog-body">
+    <div class="form-grid"><label>Cliente o proyecto<input name="client" required maxlength="70" placeholder="Ej. Familia Encina"></label><label>Sucursal<select name="branch" id="new-branch"></select></label><label>Responsable<input name="owner" required maxlength="55" placeholder="Ej. Andrea"></label><label>Tipo de proyecto<select name="type"><option>Piscina nueva</option><option>Renovación</option><option>Mantenimiento</option></select></label><label>Medidas aproximadas<input name="size" maxlength="50" placeholder="Ej. 8 × 4 m"></label><label>Fecha del próximo contacto<input name="date" type="date" required></label></div>
+    <label>Observaciones<textarea name="notes" maxlength="350" rows="3" placeholder="Ej. Confirmar acceso al terreno."></textarea></label><div class="actions"><button class="button primary" type="submit">Registrar consulta</button></div>
+  </form>
+</dialog>
+<dialog id="reset-dialog" aria-labelledby="reset-title"><header class="dialog-head"><div><h2 id="reset-title">Reiniciar demo</h2><p>Se restaurarán los ejemplos de este navegador.</p></div></header><div class="dialog-body actions"><button class="button secondary" type="button" data-action="close-reset">Cancelar</button><button class="button primary" type="button" data-action="confirm-reset">Reiniciar</button></div></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>
